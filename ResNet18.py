@@ -41,9 +41,6 @@ model.fc = nn.Linear(512, 10)
 loss_fn = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.001, betas=(0.9, 0.999))
 
-
-
-optimizer = torch.optim.Adam(model.classifier.parameters(), lr=0.001, betas=(0.9, 0.999))
 scheduler = torch.optim.lr_scheduler.ExponentialLR(
     optimizer,
     gamma=0.6
