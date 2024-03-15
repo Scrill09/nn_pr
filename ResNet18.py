@@ -15,7 +15,7 @@ transforms = tv.transforms.Compose([
     tv.transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 ])
 
-dataset_path = 'dog_breeds'
+dataset_path = 'PATH'
 
 dataset_train = tv.datasets.ImageFolder(
     root=dataset_path,
