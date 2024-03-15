@@ -15,7 +15,7 @@ transforms = tv.transforms.Compose([
     tv.transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 ])
 
-dataset_path = '...'
+dataset_path = 'dog_breeds'
 
 dataset_train = tv.datasets.ImageFolder(
     root=dataset_path,
@@ -36,14 +36,13 @@ def count_parameters(model):
 
 model = tv.models.resnet18()
 
-classifier = nn.Sequential(
-    nn.Linear(25088, 100),
-    nn.LeakyReLU(0.2),
-    nn.Linear(100, 10)
-)
-model.classifier = classifier
+model.fc = nn.Linear(512, 10)
 
 loss_fn = nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=0.001, betas=(0.9, 0.999))
+
+
+
 optimizer = torch.optim.Adam(model.classifier.parameters(), lr=0.001, betas=(0.9, 0.999))
 scheduler = torch.optim.lr_scheduler.ExponentialLR(
     optimizer,
